@@ -4,21 +4,15 @@ const TicketControl = require('../models/ticketControl');
 
 const ticketControl = new TicketControl();
 
-const socketIOConnection = ( socket ) => {
-    log('client conected ', socket.id);
+const socketController = (socket) => {
+    socket.emit('last-ticket', ticketControl.last);
+    socket.on('next-ticket', ( payload, callback ) => {
+        const next = ticketControl.next();
+        callback(next);
 
-    socket.on('disconnect', () => {
-        log('Client disconnected ', socket.id)
-    });
-
-    socket.on('send-msg', ( payload, callback ) => {
-
-            const id = 12345;
-            callback( id );
-            socket.broadcast.emit('send-msg', payload);
-    });
+    });        
 }
 
 module.exports = {
-    socketIOConnection
+    socketController
 }

@@ -3,7 +3,7 @@ const { log } = require('console');
 const express = require('express');
 const cors = require('cors');
 
-const { socketIOConnection } = require('../sockets/controller');
+const { socketController } = require('../sockets/controller');
 
 class Server {
   constructor() {
@@ -31,7 +31,7 @@ class Server {
   }
 
   socketIOConfig() {
-    this.io.on('connection', socketIOConnection);
+    this.io.on('connection', socketController);
   }
 
   listen() {
