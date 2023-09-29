@@ -14,6 +14,8 @@ const socket = io()
 
 socket.on('current-status', ( payload ) => {
     const [ ticket1, ticket2, ticket3, ticket4 ] = payload
+    const audio = new Audio('./audio/new-ticket.mp3');
+    audio.play();
     if (ticket1) {
         lblT1.innerText = `Ticket ${ticket1.number}`
         lblE1.innerText = `Escritorio ${ticket1.desk}`
