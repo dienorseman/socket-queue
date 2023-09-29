@@ -21,11 +21,11 @@ class Server {
   middlewares() {
     this.app.use(cors());
 
-    this.app.use((req, res, next) => {
-      const timestamp = new Date().toISOString();
-      log(`${timestamp} - ${req.method} ${req.url} from ${req.ip}`);
-      next();
-    });
+    // this.app.use((req, res, next) => {
+    //   const timestamp = new Date().toISOString();
+    //   log(`${timestamp} - ${req.method} ${req.url} from ${req.ip}`);
+    //   next();
+    // });
 
     this.app.use(express.static('public'));
   }
